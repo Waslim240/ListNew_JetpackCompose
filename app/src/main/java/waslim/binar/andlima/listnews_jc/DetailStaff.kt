@@ -7,8 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.R
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
@@ -19,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,13 +26,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import waslim.binar.andlima.listnews_jc.data.GetAllNewsResponseItem
+import waslim.binar.andlima.listnews_jc.data.GettAllStaffResponseItem
 import waslim.binar.andlima.listnews_jc.ui.theme.ListNews_JCTheme
 
-class DetailActivity : ComponentActivity() {
-
+class DetailStaff : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val detailNews = intent.getParcelableExtra<GetAllNewsResponseItem>("detailnews")
+        val detailStaff = intent.getParcelableExtra<GettAllStaffResponseItem>("detailstaf")
         setContent {
             ListNews_JCTheme {
                 // A surface container using the 'background' color from the theme
@@ -43,7 +40,7 @@ class DetailActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting2(detailNews!!)
+                    Greeting4(detailStaff!!)
                 }
             }
         }
@@ -51,8 +48,7 @@ class DetailActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting2(detail : GetAllNewsResponseItem) {
-    val mcontext = LocalContext.current
+fun Greeting4(detailStaf: GettAllStaffResponseItem) {
     Column(modifier = Modifier
         .fillMaxWidth()
         .fillMaxSize()
@@ -60,19 +56,6 @@ fun Greeting2(detail : GetAllNewsResponseItem) {
         .padding(top = 30.dp, start = 10.dp, end = 10.dp, bottom = 10.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
 
-        Text(text = "Pergi Ke Staff",
-            color = Color.Green,
-            fontFamily = FontFamily.SansSerif,
-            fontSize = 20.sp,
-            fontStyle = FontStyle.Italic,
-            textAlign = TextAlign.End,
-            fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp)
-                .clickable {
-                    mcontext.startActivity(Intent(mcontext, StaffLayout::class.java))
-                })
 
         Text(text = "Detail",
             color = Color.Black,
@@ -82,14 +65,14 @@ fun Greeting2(detail : GetAllNewsResponseItem) {
             fontWeight = FontWeight.ExtraBold,
             modifier = Modifier.fillMaxWidth())
 
-        Image(painter = rememberImagePainter(data = detail.image),
+        Image(painter = rememberImagePainter(data = detailStaf.image),
             contentDescription = "icondetail",
             modifier = Modifier
                 .width(200.dp)
                 .height(150.dp)
                 .padding(end = 10.dp))
 
-        Text(text = "Judul : ${detail.title}",
+        Text(text = "Name : ${detailStaf.name}",
             color = Color.Black,
             fontFamily = FontFamily.SansSerif,
             fontSize = 20.sp,
@@ -99,7 +82,7 @@ fun Greeting2(detail : GetAllNewsResponseItem) {
                 .fillMaxWidth()
                 .padding(top = 10.dp))
 
-        Text(text = "Rilis : ${detail.createdAt}",
+        Text(text = "create date : ${detailStaf.createdAt}",
             color = Color.Black,
             fontFamily = FontFamily.SansSerif,
             fontSize = 15.sp,
@@ -109,7 +92,7 @@ fun Greeting2(detail : GetAllNewsResponseItem) {
                 .fillMaxWidth()
                 .padding(top = 10.dp))
 
-        Text(text = "Author : ${detail.author}",
+        Text(text = "Email : ${detailStaf.email}",
             color = Color.Black,
             fontFamily = FontFamily.SansSerif,
             fontSize = 20.sp,
@@ -119,22 +102,12 @@ fun Greeting2(detail : GetAllNewsResponseItem) {
                 .fillMaxWidth()
                 .padding(top = 10.dp))
 
-        Text(text = "Deskripsi : ${detail.description}",
-            color = Color.Black,
-            fontFamily = FontFamily.SansSerif,
-            fontSize = 20.sp,
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.ExtraBold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp))
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview2() {
+fun DefaultPreview4() {
     ListNews_JCTheme {
-
     }
 }

@@ -16,6 +16,16 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
+            android:name=".DetailStaff"
+            android:exported="false"
+            android:label="@string/title_activity_detail_staff"
+            android:theme="@style/Theme.ListNews_JC" />
+        <activity
+            android:name=".StaffLayout"
+            android:exported="false"
+            android:label="@string/title_activity_staff_layout"
+            android:theme="@style/Theme.ListNews_JC" />
+        <activity
             android:name=".DetailActivity"
             android:exported="false"
             android:label="@string/title_activity_detail"
